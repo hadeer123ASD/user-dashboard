@@ -1,0 +1,68 @@
+<mat-toolbar class="dashboard-header">
+  <div class="header-left">
+    <mat-icon class="dashboard-icon">dashboard</mat-icon>
+    <span class="header-title">Users Dashboard</span>
+  </div>
+  <div class="spacer"></div>
+  <div class="search-field">
+    <input [formControl]="search" placeholder="Search users..." />
+    <mat-icon class="search-icon">search</mat-icon>
+  </div>
+</mat-toolbar>
+
+<div class="dashboard-container">
+
+  <!-- Loader -->
+  <mat-progress-bar
+    *ngIf="loading$ | async"
+    mode="indeterminate"
+    color="accent"
+    class="loader-bar"
+  ></mat-progress-bar>
+
+  <!-- Users Grid -->
+  <div class="users-container" *ngIf="!(noUsers$ | async); else noUsers">
+    <ng-container *ngIf="filteredUsers$ | async as users">
+      <div
+        class="user-card"
+        *ngFor="let user of users; let i = index"
+        [style.--i]="i"
+        (click)="navigateToUser(user.id)"
+      >
+        <div class="card-inner">
+          <div class="card-front">
+            <img [src]="user.image || 'assets/no-avatar.png'" alt="User Avatar" />
+            <p class="user-name" [innerHTML]="highlight(user.firstName + ' ' + user.lastName)"></p>
+            <p class="user-role" [innerHTML]="highlight(user.role || 'N/A')"></p>
+          </div>
+          <div class="card-back">
+            <p><strong>ID:</strong> {{ user.id }}</p>
+            <p><strong>Email:</strong> {{ user.email || 'N/A' }}</p>
+            <p><strong>Role:</strong> <span [innerHTML]="highlight(user.role || 'N/A')"></span></p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- No Users -->
+  <ng-template #noUsers>
+    <div class="no-users-centered">
+      <img src="assets/not-found.png" 
+      alt="No Users" />
+      <h2>No users found</h2>
+      <p>Try adjusting your search or add new users.</p>
+    </div>
+  </ng-template>
+
+  <!-- Paginator always visible -->
+  <div class="paginator-wrapper">
+    <mat-paginator
+      [length]="(total$ | async) || 0"
+      [pageSize]="limit"
+      [pageSizeOptions]="[4, 8, 12, 20]"
+      [disabled]="(total$ | async) === 0"
+      (page)="pageChanged($event)"
+    ></mat-paginator>
+  </div>
+</div>

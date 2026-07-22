@@ -1,0 +1,153 @@
+/* ================= BODY ================= */
+body {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar { width: 12px; }
+  &::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 6px; }
+  &::-webkit-scrollbar-thumb { background: #ff4081; border-radius: 6px; }
+  &::-webkit-scrollbar-thumb:hover { background: #e91e63; }
+}
+
+mark { background: #ff4081; color: white; padding: 0 4px; border-radius: 4px; }
+
+/* ================= LOADER ================= */
+.loader-bar { margin-top: 64px; }
+
+/* ================= NO USERS CENTERED ================= */
+.no-users-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  min-height: calc(100vh - 120px); /* below toolbar */
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  img { width: 150px; height: auto; margin-bottom: 20px; object-fit: contain; }
+  h2 { font-size: 1.8rem; color: #333; margin-bottom: 10px; }
+  p { font-size: 1rem; color: #666; }
+
+  @media (max-width: 480px) {
+    padding: 30px 15px;
+    img { width: 120px; }
+    h2 { font-size: 1.4rem; }
+    p { font-size: 0.9rem; }
+  }
+}
+
+body.dark-mode .no-users-centered {
+  h2, p { color: #fff; }
+  img { filter: brightness(0) invert(1); }
+}
+
+/* ================= HEADER ================= */
+.dashboard-header {
+  position: fixed; top: 0; left: 0; right: 0;
+  display: flex; flex-wrap: wrap; align-items: center;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #3f51b5, #6a11cb);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 10;
+
+  .header-left { display: flex; align-items: center;
+    .dashboard-icon { margin-right: 10px; font-size: 1.8rem; }
+    .header-title { font-size: 1.8rem; font-weight: 700; }
+  }
+
+  .spacer { flex: 1 1 auto; }
+
+  .search-field {
+    position: relative; width: 250px;
+    input {
+      padding: 8px 16px 8px 40px; border-radius: 25px; border: none;
+      outline: none; font-size: 1rem; background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: all 0.3s ease;
+    }
+    input::placeholder { color: #666; font-weight: 500; }
+    .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #3f51b5; font-size: 1.2rem; }
+    input:focus { box-shadow: 0 0 12px rgba(255,64,129,0.6); background: #fff; }
+    @media (max-width: 600px) { min-width: 100%; margin-top: 26px; }
+  }
+}
+
+/* ================= DASHBOARD ================= */
+.dashboard-container {
+  max-width: 1400px; margin: 120px auto 32px; padding: 16px;
+  background-color: rgba(255,255,255,0.95); border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-height: calc(100vh - 160px);
+  overflow:hidden; position: relative; z-index: 1;
+}
+
+/* ================= USERS GRID ================= */
+.users-container {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px; padding: 16px; justify-items: center;
+}
+
+/* ================= USER CARD ================= */
+.user-card {
+  width: 220px; height: 300px; perspective: 1200px;
+  opacity: 0; transform: translateY(20px);
+  animation: cardFadeIn 0.6s forwards; animation-delay: calc(var(--i) * 0.05s);
+
+  .card-inner {
+    position: relative; width: 100%; height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4,0.2,0.2,1);
+    transform-style: preserve-3d; cursor: pointer;
+  }
+  &:hover .card-inner { transform: rotateY(180deg) scale(1.05); }
+
+  .card-front, .card-back {
+    position: absolute; width: 100%; height: 100%;
+    border-radius: 20px; backface-visibility: hidden;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  }
+
+  .card-front {
+    background: linear-gradient(135deg, #ffffff 0%, #f2f2f2 100%);
+    img { width: 100%; object-fit: cover; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom: 1px solid #ddd; }
+    .user-name, .user-role { margin: 6px 0; color: #333; }
+  }
+
+  .card-back {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff; transform: rotateY(180deg); font-size: 0.95rem; text-align: center; box-sizing: border-box;
+    padding: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    height: 100%; white-space: normal; word-break: break-word; overflow-wrap: break-word;
+  }
+}
+
+@keyframes cardFadeIn { to { opacity: 1; transform: translateY(0); } }
+
+/* ================= PAGINATOR ================= */
+.paginator-wrapper { margin-top: 24px; display: flex; justify-content: center; width: 100%; }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .users-container { grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap:16px; }
+  .user-card { width:180px; height:260px; }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header { align-items: center; }
+  .search-field { width: 100%; margin-top: 6px; }
+}
+
+/* ================= DARK MODE ================= */
+body.dark-mode {
+  background: linear-gradient(135deg, #121212, #1e1e1e);
+  color: #fff;
+  .dashboard-container { background: #1f1f1f; }
+  .user-card .card-front { background: #2a2a2a; color: #fff; }
+  .card-back { background: linear-gradient(135deg, #3a0ca3, #7209b7); color: #fff; }
+  mat-toolbar { background: linear-gradient(135deg, #000, #333); }
+  .search-field input { background: #2c2c2c; color: #fff; &::placeholder { color: #aaa; } }
+}

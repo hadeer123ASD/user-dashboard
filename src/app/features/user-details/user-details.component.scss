@@ -1,0 +1,321 @@
+// /* Toolbar with same gradient as card */
+
+// .section {
+//   margin: 12px 0;
+// }
+
+// .section h4 {
+//   margin: 10px 0 6px;
+//   font-weight: 600;
+//   opacity: 0.9;
+// }
+
+// .user-toolbar {
+//   background: linear-gradient(135deg, #6a11cb, #2575fc);
+//   color: #fff;
+//   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+//   font-size: 1.2rem;
+//   display: flex;
+//   align-items: center;
+//   padding: 12px 24px;
+
+//   button {
+//     margin-right: 16px;
+//     color: #fff;
+//     transition: transform 0.3s ease;
+    
+//     &:hover {
+//       transform: scale(1.2);
+//     }
+//   }
+
+//   span {
+//     font-weight: 600;
+//   }
+// }
+
+// /* Container centered horizontally */
+// .details-container {
+//   display: flex;
+//   justify-content: center; /* horizontal center */
+//   align-items: center;     /* vertical center optional */
+//   margin: 40px 16px;
+//   flex-direction: column;  /* stack if multiple cards in future */
+//   // width: 100%;
+//   min-height: calc(100vh - 80px); /* keep some vertical spacing */
+// }
+
+// /* Card with gradient, shadow, and animation */
+// .details-card {
+//   max-width: 350px;
+//   width: 100%; /* ensures it shrinks on small screens */
+//   text-align: center;
+//   background: linear-gradient(135deg, #6a11cb, #2575fc);
+//   color: #fff;
+//   border-radius: 20px;
+//   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+//   overflow: hidden;
+//   transition: transform 0.5s ease, box-shadow 0.5s ease;
+//   margin: 0 auto; /* ensures horizontal centering */
+
+//   &:hover {
+//     transform: translateY(-10px) scale(1.02);
+//     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+//   }
+
+//   .card-header {
+//     padding: 24px 0;
+
+//     img {
+//       border-radius: 50%;
+//       width: 150px;
+//       height: 150px;
+//       object-fit: cover;
+//       border: 4px solid rgba(255, 255, 255, 0.6);
+//       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+//       transition: transform 0.4s ease;
+
+//       &:hover {
+//         transform: scale(1.1) rotate(5deg);
+//       }
+//     }
+//   }
+
+//   mat-card-title {
+//     font-size: 1.5rem;
+//     font-weight: 700;
+//     margin-top: 0;
+//   }
+
+//   mat-card-subtitle {
+//     font-size: 1.1rem;
+//     opacity: 0.8;
+//     margin-bottom: 16px;
+//   }
+
+//   mat-card-content {
+//     text-align: left;
+//     padding: 0 24px;
+
+//     p {
+//       margin: 6px 0;
+//       font-weight: 500;
+//     }
+//   }
+
+//   mat-card-actions {
+//     display: flex;
+//     justify-content: center;
+//     margin: 16px 0;
+    
+//     button {
+//       transition: transform 0.3s ease, background 0.3s ease;
+      
+//       &:hover {
+//         transform: scale(1.05);
+//         background: #ff4081;
+//       }
+//     }
+//   }
+// }
+
+// /* Animate card appearance */
+// .animate-card {
+//   animation: fadeInUp 0.8s ease forwards;
+//   opacity: 0;
+// }
+
+// @keyframes fadeInUp {
+//   0% {
+//     transform: translateY(20px);
+//     opacity: 0;
+//   }
+//   100% {
+//     transform: translateY(0);
+//     opacity: 1;
+//   }
+// }
+
+// /* Responsive for mobile */
+// @media (max-width: 480px) {
+//   .details-card {
+//     max-width: 95%; /* fills most of the screen */
+//     width: 95%;
+//   }
+//   .details-container {
+//     margin: 20px auto;
+//   }
+// }
+/* ================== Sections ================== */
+.section {
+  margin: 6px 0;
+}
+
+.section h4 {
+  margin: 4px 0;
+  font-weight: 600;
+  opacity: 0.85;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* ================== Toolbar ================== */
+.user-toolbar {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+
+  button {
+    margin-right: 14px;
+    color: #fff;
+    transition: transform 0.25s ease;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+
+  span {
+    font-weight: 600;
+  }
+}
+
+/* ================== Container ================== */
+.details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 12px;
+  flex-direction: column;
+  min-height: calc(100vh - 70px);
+}
+
+/* ================== Card ================== */
+.details-card {
+  max-width: 450px;   /* 🔥 wider */
+  width: 100%;
+  padding:0px 10px;
+  text-align: center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  margin: 0 auto;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+  }
+
+  /* ---------- Header Image ---------- */
+  .card-header {
+    padding: 12px 0 10px;
+
+    img {
+      width: 90px;     /* 🔥 smaller image */
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.06) rotate(3deg);
+      }
+    }
+  }
+
+  /* ---------- Title ---------- */
+  mat-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  mat-card-subtitle {
+    font-size: 0.95rem;
+    opacity: 0.75;
+    margin: 4px 0 8px;
+  }
+
+  /* ---------- Content ---------- */
+  mat-card-content {
+    text-align: left;
+    padding: 0 16px 6px;
+
+    p {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr; /* 🔥 more horizontal */
+      gap: 4px 10px;
+      margin: 3px 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    strong {
+      opacity: 0.85;
+      font-weight: 600;
+    }
+  }
+
+  /* ---------- Actions ---------- */
+  mat-card-actions {
+    display: flex;
+    justify-content: center;
+    margin: 6px 0 10px;
+
+    button {
+      font-size: 0.8rem;
+      padding: 4px 14px;
+      transition: transform 0.25s ease, background 0.25s ease;
+
+      &:hover {
+        transform: scale(1.04);
+        background: #ff4081;
+      }
+    }
+  }
+}
+
+/* ================== Animation ================== */
+.animate-card {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ================== Responsive ================== */
+@media (max-width: 600px) {
+  .details-card {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 420px) {
+  .details-card {
+    max-width: 100%;
+  }
+
+  mat-card-content p {
+    grid-template-columns: 1fr;
+  }
+}
